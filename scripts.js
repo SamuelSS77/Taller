@@ -16,5 +16,18 @@ const auxilioTransporte = 249095;
 const porcentajePension = 0.04;
 const porcentajeSalud = 0.04;
 const porcentajeFondoSolidaridad = 0.01;
+const riesgos = [0.00522, 0.01044, 0.02436, 0.04350, 0.06960];
 
+
+function validar(edad) {
+    if (edad < 18) {
+        stop();
+    } else if (18 <= edad && edad< 25) {
+        esUsuarioBenerficiarioPorCotizante();
+    } else if (edad >= 60) {
+        pension();
+    } else {
+        salaraioCalculo();
+    }
+}
 
