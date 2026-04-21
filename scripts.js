@@ -27,7 +27,19 @@ function validar(edad) {
     } else if (edad >= 60) {
         pension();
     } else {
-        salaraioCalculo();
+        salarioCalculo();
     }
 }
 
+let ibc = (salario + comisiones + totalHorasExtras) * 0.7
+let calculoAuxilioTransporte = salario < 2 * salarioMinimo? auxilioTransporte : 0
+let calculoSalud = ibc * porcentajeSalud
+let calculoFondoSolidaridad = ibc * porcentajeFondoSolidaridad
+let calculoPension = ibc >= 4 * salarioMinimo? ibc * porcentajePension + calculoFondoSolidaridad : ibc * porcentajePension
+let calculoArl = ibc * riesgos[parseInt(nivelRiesgo) - 1];
+
+
+function calcularPorcentaje(base, porcentaje) {
+    let resultado = base * porcentaje;
+    return resultado;
+}
