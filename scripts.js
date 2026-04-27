@@ -18,6 +18,12 @@ const porcentajeSalud = 0.04;
 const porcentajeFondoSolidaridad = 0.01;
 const riesgos = [0.00522, 0.01044, 0.02436, 0.04350, 0.06960];
 
+const formDatosGenerales = document.getElementById("datosGenerales")
+
+
+
+
+
 
 function validar(edad) {
     if (edad < 18) {
