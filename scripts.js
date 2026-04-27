@@ -18,19 +18,20 @@ const porcentajeSalud = 0.04;
 const porcentajeFondoSolidaridad = 0.01;
 const riesgos = [0.00522, 0.01044, 0.02436, 0.04350, 0.06960];
 
+
+//DOM
 const formDatosGenerales = document.getElementById("datosGenerales")
-
-
-
-
 
 
 function validar(edad) {
     if (edad < 18) {
-        stop();
+        alert("No cumples con la edad minima para avanzar");
+        return;
     } else if (18 <= edad && edad< 25) {
+         alert("Usuario beneficiario por cotizante");
         esUsuarioBenerficiarioPorCotizante();
     } else if (edad >= 60) {
+        alert("Se calculara solo el pago por pension");
         pension();
     } else {
         salarioCalculo();
