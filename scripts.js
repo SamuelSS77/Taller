@@ -20,7 +20,19 @@ const riesgos = [0.00522, 0.01044, 0.02436, 0.04350, 0.06960];
 
 
 //DOM
-const formDatosGenerales = document.getElementById("datosGenerales")
+const formDatosGenerales = document.getElementById("datosGenerales");
+
+//Inputs Conectados
+const inputNombre = document.getElementById("nombreCompleto");
+const inputEdad = document.getElementById("edad");
+const inputTipoDoc = document.getElementById("tipoDeDocumento");
+const inputNumeroDoc = document.getElementById("numeroDocumento");
+
+
+const inputSalario = document.getElementById("salario");
+const inputComisiones = document.getElementById("comisiones");
+const inputHorasExtra = document.getElementById("totalHorasExtras");
+const inputNivelDeRiesgo = document.getElementById("nivelRiesgo");
 
 
 function validar(edad) {
