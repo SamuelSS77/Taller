@@ -120,6 +120,7 @@ formDatosGenerales.addEventListener("submit", function(event) {
         mostrarError("No es posible continuar. El usuario es menor de edad.");
         hayErrores = true;
     } else if (edad >= 18 && edad < 25) {
+        mostrarError("Usuario clasificado como: Beneficiario por cotizante.");
         hayErrores = true;
     }
 
@@ -136,3 +137,66 @@ formDatosGenerales.addEventListener("submit", function(event) {
 
     mostrarDatosPersonales();
 });
+
+function calcularNomina(salario, comisiones, horasExtras, riesgoIndex) {
+    
+    let totalDevengado = salario + comisiones + horasExtras;
+    
+    
+    let ibc = (salario >= salarioMinimoIntegral) ? totalDevengado * 0.7 : totalDevengado; 
+    
+    
+    let auxilio = (salario <= (salarioMinimo * 2)) ? auxilioTransporte : 0; 
+    
+    
+    let aplicaDeducciones = salario >= (salarioMinimo * 2);
+
+    let deduccionSalud = 0;
+    let deduccionPension = 0;
+    let deduccionFondo = 0;
+    let deduccionArl = 0;
+
+    if (aplicaDeducciones) {
+        deduccionSalud = ibc * porcentajeSalud; 
+        deduccionPension = ibc * porcentajePension; 
+        
+        if (ibc >= (salarioMinimo * 4)) {
+            deduccionFondo = ibc * porcentajeFondoSolidaridad; 
+        }
+        deduccionArl = ibc * riesgos[riesgoIndex]; 
+    }
+
+    // Impresión en DOM
+    resultadoSalario.textContent = `Salario: $${salario.toFixed(2)}`;
+    resultadoAuxilio.textContent = `Auxilio Transporte: $${auxilio.toFixed(2)}`;
+    resultadoComisiones.textContent = `Comisiones: $${comisiones.toFixed(2)}`;
+    resultadoHorasExtras.textContent = `Horas Extra: $${horasExtras.toFixed(2)}`;
+
+    resultadoSalud.textContent = `Salud: $${deduccionSalud.toFixed(2)}`;
+    resultadoPension.textContent = `Pensión: $${deduccionPension.toFixed(2)}`;
+    resultadoFondo.textContent = `Fondo Solidaridad: $${deduccionFondo.toFixed(2)}`;
+    resultadoArl.textContent = `ARL: $${deduccionArl.toFixed(2)}`;
+}
+
+function calcularPension(mesada) {
+    // Solo se calcula la pensión 
+    let deduccionPension = mesada * porcentajePension;
+
+    resultadoSalario.textContent = `Mesada Pensional: $${mesada.toFixed(2)}`;
+    resultadoAuxilio.textContent = `Auxilio Transporte: $0.00`;
+    resultadoComisiones.textContent = `Comisiones: $0.00`;
+    resultadoHorasExtras.textContent = `Horas Extra: $0.00`;
+
+    resultadoSalud.textContent = `Salud: $0.00`;
+    resultadoPension.textContent = `Aporte Pensión: $${deduccionPension.toFixed(2)}`;
+    resultadoFondo.textContent = `Fondo Solidaridad: $0.00`;
+    resultadoArl.textContent = `ARL: $0.00`;
+}
+
+function mostrarDatosPersonales() {
+    resultadoNombre.textContent = `Nombre: ${nombreCompleto}`;
+    resultadoEdad.textContent = `Edad: ${edad}`;
+    resultadoTipoDocumento.textContent = `Tipo Documento: ${tipoDeDocumento}`;
+    resultadoNumeroDocumento.textContent = `No. Documento: ${numeroDocumento}`;
+    resultadoNivelRiesgo.textContent = `Nivel de Riesgo Seleccionado: Nivel ${nivelRiesgo + 1}`;
+}
