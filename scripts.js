@@ -1,8 +1,13 @@
+//Samuel Santiago Silva Largo 1011099440
+
+
+
+
 //variables
-let nombreCompleto = "Juan el Caballo Loco";
-let edad = 18;
-let tipoDeDocumento = "CC";
-let numeroDocumento = "1011099440";
+let nombreCompleto = "";
+let edad = 0;
+let tipoDeDocumento = "";
+let numeroDocumento = "";
 
 let salario = 0;
 let comisiones = 0;
@@ -22,6 +27,9 @@ const riesgos = [0.00522, 0.01044, 0.02436, 0.04350, 0.06960];
 //DOM
 const formDatosGenerales = document.getElementById("datosGenerales");
 
+const erroresDOM = document.getElementById("errores");
+
+
 //Inputs Conectados
 const inputNombre = document.getElementById("nombreCompleto");
 const inputEdad = document.getElementById("edad");
@@ -33,6 +41,24 @@ const inputSalario = document.getElementById("salario");
 const inputComisiones = document.getElementById("comisiones");
 const inputHorasExtra = document.getElementById("totalHorasExtras");
 const inputNivelDeRiesgo = document.getElementById("nivelRiesgo");
+
+//Resultados DOM
+const resultadoSalario = document.getElementById("resultadoSalario");
+const resultadoAuxilio = document.getElementById("resultadoAuxilio");
+const resultadoComisiones = document.getElementById("resultadoComisiones");
+const resultadoHorasExtras = document.getElementById("resultadoHorasExtras");
+
+const resultadoSalud = document.getElementById("resultadoSalud");
+const resultadoFondo = document.getElementById("resultadoFondo");
+const resultadoPension = document.getElementById("resultadoPension");
+const resultadoArl = document.getElementById("resultadoArl");
+
+const resultadoNivelRiesgo = document.getElementById("resultadoNivelRiesgo");
+const resultadoEdad = document.getElementById("resultadoEdad");
+const resultadoNombre = document.getElementById("resultadoNombre");
+const resultadoTipoDocumento = document.getElementById("resultadoTipoDocumento");
+const resultadoNumeroDocumento = document.getElementById("resultadoNumeroDocumento");
+
 
 
 function validar(edad) {
