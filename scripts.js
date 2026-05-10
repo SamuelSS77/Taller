@@ -1,7 +1,4 @@
-//Samuel Santiago Silva Largo 1011099440
-
-
-
+//Samuel Santiago Silva Código: 1011099440
 
 //variables
 let nombreCompleto = "";
