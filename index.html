@@ -6,44 +6,43 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="Formulario-Taller"> </div>
-
+    <div class="Formulario-Taller">
 <h1> Formulario </h1>
 
 <form id="datosGenerales">
-<label>NombreCompleto</label>
+
+<label for="nombreCompleto">Nombre Completo</label>
 <input type="text" id="nombreCompleto">
 
-<label>edad</label>
+<label for="edad">Edad</label>
 <input type="number" id="edad">
 
-<label>tipoDeDocumento</label>
+<label for="tipoDeDocumento">Tipo de Documento</label>
 <select id="tipoDeDocumento">
             <option value="RC">RC</option>
             <option value="TI">TI</option>
-            <option value="CC" selected>CC</option>
+            <option value="CC">CC</option>
             <option value="CE">CE</option>
             <option value="PP">PP</option>
         </select>
 
-<label>numeroDocumento</label>
+ <label for="numeroDocumento">Número Documento</label>
 <input type="text" id="numeroDocumento">
 
-<hr> <!-- Una línea separadora visual -->
+<hr> 
 
-<h2>Datos Salariales</h3>
+<h2>Datos Salariales</h2>
 
-<label>salario</label>
+ <label for="salario">Salario</label>
 <input type="number" id="salario">
 
-<label>comisiones</label>
+<label for="comisiones">Comisiones</label>
 <input type="number" id="comisiones">
 
-<label>HorasExtra</label>
+<label for="totalHorasExtras">Horas Extra</label>
 <input type="number" id="totalHorasExtras">
 
-<label>NivelDeRiesgo</label>
-<label>Nivel de Riesgo</label>
+<label for="nivelRiesgo">Nivel de Riesgo</label>
         <select id="nivelRiesgo">
             <option value="0">Nivel I – Riesgo Mínimo</option>
             <option value="1">Nivel II – Riesgo Bajo</option>
@@ -53,12 +52,47 @@
         </select>
 
 <button type="submit">Calcular Nómina</button>
-    </form>
+   
 
+ </form>
 
+</div>
 
-    <script src="scripts.js">
-    </script>
+<!-- Errores -->
+<ul id="errores"></ul>
+
+<section id="resultados">
+
+    <h2>Resultados</h2>
+
+    <ul>
+        <li><strong>Ingresos</strong></li>
+        <li id="resultadoSalario"></li>
+        <li id="resultadoAuxilio"></li>
+        <li id="resultadoComisiones"></li>
+        <li id="resultadoHorasExtras"></li>
+    </ul>
+
+    <ul>
+        <li><strong>Deducibles</strong></li>
+        <li id="resultadoSalud"></li>
+        <li id="resultadoFondo"></li>
+        <li id="resultadoPension"></li>
+        <li id="resultadoArl"></li>
+    </ul>
+
+    <ul>
+        <li><strong>Otros</strong></li>
+        <li id="resultadoNivelRiesgo"></li>
+        <li id="resultadoEdad"></li>
+        <li id="resultadoNombre"></li>
+        <li id="resultadoTipoDocumento"></li>
+        <li id="resultadoNumeroDocumento"></li>
+    </ul>
+
+</section>
+
+<script src="scripts.js"></script>
 
 </body>
 </html>
