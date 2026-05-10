@@ -97,3 +97,42 @@ formDatosGenerales.addEventListener("submit", function(event) {
         mostrarError("El salario debe ingresarse sin puntos, comas o signos");
         hayErrores = true;
     }
+
+    // Conversión a números
+    edad = Number(edadStr);
+    salario = Number(salarioStr);
+    comisiones = Number(comisionesStr);
+    totalHorasExtras = Number(horasExtraStr);
+    nivelRiesgo = Number(inputNivelDeRiesgo.value);
+    
+    nombreCompleto = inputNombre.value;
+    tipoDeDocumento = inputTipoDoc.value;
+    numeroDocumento = numDocStr;
+
+    // Validación de números negativos
+    if (salario < 0 || comisiones < 0 || totalHorasExtras < 0 || edad < 0) {
+        mostrarError("El número ingresado debe ser mayor o igual a 0");
+        hayErrores = true;
+    }
+
+    // Validaciones de edad
+    if (edad < 18) {
+        mostrarError("No es posible continuar. El usuario es menor de edad.");
+        hayErrores = true;
+    } else if (edad >= 18 && edad < 25) {
+        hayErrores = true;
+    }
+
+    // Detener si hay errores o no cumple perfil
+    if (hayErrores) return;
+
+    // Validación mayores de 60 años
+    if (edad >= 60) {
+        mostrarError("Solo se calculará el pago de la pensión. Ingrese su mesada.");
+        calcularPension(salario);
+    } else {
+        calcularNomina(salario, comisiones, totalHorasExtras, nivelRiesgo);
+    }
+
+    mostrarDatosPersonales();
+});
