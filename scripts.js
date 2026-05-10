@@ -60,31 +60,40 @@ const resultadoTipoDocumento = document.getElementById("resultadoTipoDocumento")
 const resultadoNumeroDocumento = document.getElementById("resultadoNumeroDocumento");
 
 
+// Mensajes para los errores
+function mostrarError(mensaje) {
+    let li = document.createElement("li");
+    li.textContent = mensaje;
+    li.style.color = "red";
+    erroresDOM.appendChild(li);
+}
 
-function validar(edad) {
-    if (edad < 18) {
-        alert("No cumples con la edad minima para avanzar");
-        return;
-    } else if (18 <= edad && edad< 25) {
-         alert("Usuario beneficiario por cotizante");
-        esUsuarioBenerficiarioPorCotizante();
-    } else if (edad >= 60) {
-        alert("Se calculara solo el pago por pension");
-        pension();
-    } else {
-        salarioCalculo();
+// Evento
+formDatosGenerales.addEventListener("submit", function(event) {
+    event.preventDefault();
+    erroresDOM.innerHTML = ""; // Limpiar errores previos
+
+    // Captura de datos para validar
+    let edadStr = inputEdad.value.trim();
+    let numDocStr = inputNumeroDoc.value.trim();
+    let salarioStr = inputSalario.value.trim();
+    let comisionesStr = inputComisiones.value.trim();
+    let horasExtraStr = inputHorasExtra.value.trim();
+
+    let hayErrores = false;
+
+    // Validaciones
+    if (edadStr === "" || isNaN(Number(edadStr))) {
+        mostrarError("La edad debe ser un valor numérico");
+        hayErrores = true;
     }
-}
+    
+    if (numDocStr.includes(".") || numDocStr.includes(",")) {
+        mostrarError("El número de documento debe ingresarse sin puntos ni comas");
+        hayErrores = true;
+    }
 
-let ibc = (salario + comisiones + totalHorasExtras) * 0.7
-let calculoAuxilioTransporte = salario < 2 * salarioMinimo? auxilioTransporte : 0
-let calculoSalud = ibc * porcentajeSalud
-let calculoFondoSolidaridad = ibc * porcentajeFondoSolidaridad
-let calculoPension = ibc >= 4 * salarioMinimo? ibc * porcentajePension + calculoFondoSolidaridad : ibc * porcentajePension
-let calculoArl = ibc * riesgos[parseInt(nivelRiesgo) - 1];
-
-
-function calcularPorcentaje(base, porcentaje) {
-    let resultado = base * porcentaje;
-    return resultado;
-}
+    if (salarioStr.includes(".") || salarioStr.includes(",") || salarioStr.includes("$") || salarioStr.includes("-")) {
+        mostrarError("El salario debe ingresarse sin puntos, comas o signos");
+        hayErrores = true;
+    }
